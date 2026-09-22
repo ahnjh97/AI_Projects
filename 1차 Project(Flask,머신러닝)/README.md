@@ -1,6 +1,6 @@
 <div align="center">
 
-# 서울시 호흡기 건강 예보 [프로젝트 링크](https://github.com/ahnjh97/AI_Projects/tree/main/1%EC%B0%A8%20Project%28Flask%2C%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%29)
+# 서울시 호흡기 건강 예보 &emsp;&emsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](https://github.com/ahnjh97/AI_Projects/tree/main/1%EC%B0%A8%20Project%28Flask%2C%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%29)
 
 **대기환경, 인구, 과거 질환 데이터를 지역별 예측과 시각화로 연결한 웹 서비스**
 
