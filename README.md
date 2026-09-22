@@ -34,7 +34,7 @@
 - 자동으로 생성한 라벨 후보를 사람이 검수하고, 정리한 데이터로 객체 탐지 모델을 학습하고 검증했습니다.
 - 탐지 영상을 스트리밍으로 제공하고, 최신 탐지 목록과 위험도 지표를 별도 API로 전달합니다.
 
-**핵심 기술:** YOLO11n, Roboflow, OpenCV, OpenVINO, Flask-RESTX
+**핵심 기술:** YOLO11n Fine-Tuning, Roboflow, OpenCV, OpenVINO, Flask-RESTX
 
 ---
 
@@ -45,15 +45,17 @@ Unity 사용법, 게임개발 개념, 게임수학 질문에 한국어로 답하
 - Unity/GameDev 전문 데이터와 일반 대화 데이터를 합쳐 총 7,290개의 한국어 instruction dataset을 구성했습니다.
 - 웹 API와 모델의 응답을 연결하고 프롬프트 구성과 응답 후처리를 적용했습니다.
 
-**핵심 기술:** Llama 3.2 3B, QLoRA, Instruction Tuning, Flask-RESTX
+**핵심 기술:** Llama 3.2 3B, QLoRA, SFT, Instruction Tuning, Domain Fine-Tuning, AWQ, Flask-RESTX
+
+KoAlpaca instruction tuning과 Unity/GameDev 도메인 fine-tuning을 모두 QLoRA 기반 SFT로 진행했습니다. 학습 후 LoRA adapter를 병합하고 AWQ 4-bit 양자화로 추론용 모델을 경량화했습니다.
 
 ---
 
 ## 구현 범위
 
 - **예측 서비스:** 데이터 수집과 정제, 다중 출력 회귀, Oracle 저장, 지도 및 차트 시각화, 입력값 시뮬레이션
-- **영상 인식:** 자동 라벨 후보 생성과 사람 검수, YOLO11n 학습과 검증, OpenVINO 변환, MJPEG, JSON API
-- **LLM 서비스:** instruction dataset 구성, QLoRA 기반 instruction tuning과 도메인 fine-tuning, 프롬프트와 응답 후처리
+- **영상 인식:** 자동 라벨 후보 생성과 사람 검수, YOLO11n fine-tuning과 검증, OpenVINO 변환, MJPEG, JSON API
+- **LLM 서비스:** instruction dataset 구성, QLoRA 기반 SFT, instruction tuning과 도메인 fine-tuning, AWQ 양자화, 프롬프트와 응답 후처리
 
 ## 저장소 구조
 

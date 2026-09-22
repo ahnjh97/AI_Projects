@@ -35,7 +35,7 @@ PreDect는 보행 환경의 영상에서 **보행자 신호등의 빨간불과 �
 - **Video**: OpenCV (프레임 입력, 주석 영상, MJPEG 스트리밍)
 - **Inference**: OpenVINO (FP32 모델 변환 및 별도 추론 실험)
 - **API**: Python, Flask, Flask-RESTX, Flask-CORS (영상, 상태 제공과 API 문서)
-- **Training**: PyTorch, CUDA, Jupyter (GPU 학습과 평가 노트북)
+- **Training**: YOLO11n Fine-Tuning, PyTorch, CUDA, Jupyter (GPU 학습과 평가 노트북)
 
 ## 아키텍처
 

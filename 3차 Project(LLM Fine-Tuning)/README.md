@@ -28,11 +28,15 @@ Unity 학습자가 한국어로 개념과 구현 방법을 질문할 수 있는 
 ## 기술 스택
 
 - **Base Model**: Llama 3.2 3B (`meta-llama/Llama-3.2-3B`)
-- **Fine-Tuning**: QLoRA, instruction tuning, Unity/GameDev 도메인 fine-tuning
+- **Training**: QLoRA, SFT (Supervised Fine-Tuning), TRL SFTTrainer, PEFT
+- **학습 단계**: KoAlpaca Instruction Tuning, Unity/GameDev Domain Fine-Tuning
+- **Quantization**: AWQ 4-bit (학습 후 추론용 모델 경량화)
 - **API**: Python, Flask, Flask-RESTX, Flask-CORS (입력 검증과 JSON 응답)
 - **Dataset**: JSONL, KoAlpaca instruction data (한국어 지시문과 답변 구성)
 
-KoAlpaca로 instruction tuning한 모델에 LoRA adapter를 병합한 뒤, 이를 Unity/GameDev 도메인 fine-tuning의 시작 모델로 사용했습니다. 두 학습 단계 모두 4-bit QLoRA를 적용했습니다.
+KoAlpaca로 instruction tuning한 모델에 LoRA adapter를 병합한 뒤, 이를 Unity/GameDev 도메인 fine-tuning의 시작 모델로 사용했습니다. 두 학습 단계 모두 TRL의 `SFTTrainer`로 SFT를 수행했으며, 4-bit QLoRA를 적용했습니다.
+
+SFT는 정답 응답을 학습하는 방식이고, QLoRA는 4-bit로 양자화한 base model에 LoRA adapter를 학습하는 기법입니다. 최종 adapter를 병합한 뒤에는 AWQ 4-bit 양자화를 적용해 추론용 모델을 경량화했습니다.
 
 이 저장소에는 데이터셋과 서비스 연결 코드가 포함되어 있으며, fine-tuning 학습 노트북과 최종 LLM 가중치는 포함되어 있지 않습니다.
 
