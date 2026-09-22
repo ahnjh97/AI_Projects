@@ -8,8 +8,6 @@
 
 **Pre(미리) + Detect(감지) + Predict(예측) → PreDect**
 
-2026.04–2026.05
-
 [주요 기능](#주요-기능) &nbsp;&nbsp; [학습과 검증](#학습과-검증) &nbsp;&nbsp; [전체 프로젝트](../README.md)
 
 </div>
