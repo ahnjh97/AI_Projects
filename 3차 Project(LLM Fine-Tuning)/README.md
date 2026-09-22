@@ -1,0 +1,134 @@
+<div align="center">
+
+# Unity / GameDev 한국어 튜터
+
+**Unity·게임개발·게임수학 질문을 위한 도메인 특화 LLM 챗봇**
+
+[주요 기능](#주요-기능) · [데이터셋](#데이터셋) · [아키텍처](#아키텍처) · [실행 안내](#실행-안내) · [전체 프로젝트](../README.md)
+
+</div>
+
+<br>
+
+## 프로젝트 소개
+
+Unity 학습자가 한국어로 개념과 구현 방법을 질문할 수 있는 튜터형 LLM 서비스입니다. 일반 instruction 데이터와 게임개발 전문 데이터를 구성하고, 도메인 튜닝 모델을 **Flask REST API → MCP 도구 → vLLM 추론 서버**로 연결했습니다.
+
+답변이 불필요하게 길어지거나 학습용 구분자를 다시 출력하는 문제를 줄이기 위해 **도메인 프롬프트, stop sequence, 중복 제거와 길이 제한**을 함께 적용했습니다.
+
+## 주요 기능
+
+| 영역 | 구현 내용 |
+| :--- | :--- |
+| **한국어 튜터** | Unity, C#, 게임개발, 게임수학 질문·답변 |
+| **학습 데이터** | 전문 지식과 KoAlpaca 일반 지시·대화 데이터의 혼합 |
+| **REST API** | 질문 입력 검증, 응답 포맷, 상태 확인 |
+| **MCP** | 질문·개념 설명 기능을 독립 도구로 제공 |
+| **응답 제어** | 학습 구분자 제거, 중복 문장 제거, 코드 요청 여부에 따른 출력 제어 |
+| **연결 처리** | 추론 서버 주소·모델·키 설정, 타임아웃·연결 오류 메시지 |
+
+## 기술 스택
+
+| 구분 | 기술 | 활용 |
+| :--- | :--- | :--- |
+| **API** | Python, Flask, Flask-RESTX, Flask-CORS | 입력 검증과 JSON 응답 |
+| **Tool Layer** | MCP Python SDK, FastMCP | stdio 기반 도구 호출 |
+| **Serving** | vLLM, requests | 별도 모델 서버에 completion 요청 |
+| **Dataset** | JSONL, KoAlpaca instruction data | 한국어 지시문·답변 구성 |
+
+vLLM은 모델 **추론·서빙** 역할입니다. 이 저장소에는 데이터셋과 서비스 연결 코드가 포함되어 있으며, 파인튜닝 학습 스크립트와 최종 LLM 가중치는 포함되어 있지 않습니다.
+
+## 데이터셋
+
+| 구성 | 개수 | 비율 |
+| :--- | ---: | ---: |
+| Unity·게임개발·게임수학 전문 지식 | 6,290 | 약 86.3% |
+| 일반 대화·지시 | 1,000 | 약 13.7% |
+| **합계** | **7,290** | **100%** |
+
+저장소의 JSONL·JSON 파일을 직접 집계한 수치입니다. 전문 지식과 일반 데이터는 각 레코드의 `data_type`으로 구분합니다.
+
+- 학습 형식: `instruction`, `input`, `output`
+- 학습 파일: `unity_game_dev_tutor_dataset/unity_game_dev_tutor_ko.jsonl`
+- JSON 배열 버전과 [데이터 설명](./unity_game_dev_tutor_dataset/README.md), [출처 문서](./unity_game_dev_tutor_dataset/SOURCES.md) 포함
+- 오브젝트 풀링, Update/FixedUpdate, Rigidbody/CharacterController, Collider/Trigger 등 핵심 개념의 한국어 질문 변형 구성
+- 비코드 질문의 코드블록과 반복·메타 문구를 정리하고 간결한 답변 형식으로 구성
+
+## 아키텍처
+
+```mermaid
+flowchart LR
+    U[사용자 질문] --> F[Flask REST API]
+    F --> C[MCP Client]
+    C --> M[FastMCP Tool]
+    M --> P[도메인 프롬프트]
+    P --> V[vLLM 모델 서버]
+    V --> R[응답 후처리]
+    R --> F
+```
+
+- `app.py`: `/chat` 요청을 받아 MCP 세션을 생성하고 `ask_unity_tutor` 호출
+- `mcp_server.py`: 프롬프트 생성, vLLM 요청, 응답 추출·후처리와 MCP 도구 정의
+- `mcp_client.py`: 별도 MCP 클라이언트 예제
+- `VLLM_SERVER_URL`, `VLLM_API_KEY`, `VLLM_MODEL`: 실행 환경별 추론 서버 설정
+
+## 구현 포인트
+
+### API와 모델 서버 분리
+
+웹 API는 질문 검증·응답 형식을 담당하고, MCP 도구는 튜터 기능과 모델 호출을 담당합니다. 모델 접속 정보는 환경변수로 전달하여 API 코드와 분리했습니다. MCP 호출에는 비동기 세션을 사용하지만, 현재 Flask 요청 처리에서는 `asyncio.run`으로 완료를 기다립니다.
+
+### 출력 형식의 일관성
+
+- 한국어 도메인 프롬프트로 답변 범위와 용어 사용 지시
+- stop sequence와 후처리로 `### 입력:`, `### 응답:` 등 구분자의 재출력 정리
+- 동일 문장을 제거하고 일반 질문은 최대 3개, 코드 요청은 최대 5개 문장 단위로 후처리
+- 코드·C#·구현·스크립트를 명시한 요청에서만 코드블록 허용
+
+이 설정은 출력 제어를 위한 구현이며 답변 정확도나 코드의 실행 가능성을 보장하는 평가 결과는 아닙니다.
+
+## API와 MCP 도구
+
+| 종류 | 이름 | 역할 |
+| :--- | :--- | :--- |
+| HTTP | `GET /health` | Flask API 상태 확인 |
+| HTTP | `POST /chat` | `question`을 받아 `status`, `answer`, `via` 반환 |
+| MCP | `health_check` | MCP 상태와 모델 서버 설정 여부 확인 |
+| MCP | `ask_unity_tutor` | 게임개발 질문 응답 |
+| MCP | `explain_unity_concept` | 개념을 초보자용 질문으로 변환 후 응답 |
+
+## 실행 안내
+
+### 1. API 환경 준비
+
+`restx-mcp-server` 폴더에서 실행합니다.
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+`app.py`의 `StdioServerParameters`에는 `cwd="/home/ubuntu/llm-api"`가 지정되어 있습니다. **실행 전에 이를 로컬 `restx-mcp-server`의 절대 경로로 변경**해야 MCP 프로세스가 `mcp_server.py`를 찾을 수 있습니다.
+
+### 2. 추론 서버 설정
+
+별도 환경에서 튜닝 모델을 vLLM으로 서비스한 뒤, API를 실행할 셸에 다음 값을 지정합니다.
+
+```powershell
+$env:VLLM_SERVER_URL = "http://127.0.0.1:8000/v1/completions"
+$env:VLLM_MODEL = "unity-gamedev-llm"
+# 인증을 사용하는 서버라면 VLLM_API_KEY도 설정합니다.
+python app.py
+```
+
+모델 이름은 실제 vLLM에 등록된 이름과 일치해야 합니다. URL은 기본 주소가 아니라 `prompt` 기반 요청을 받는 **completion 엔드포인트 전체 주소**입니다. 코드가 `.env`를 자동으로 읽지는 않으므로 환경변수를 프로세스에 전달해야 합니다.
+
+### 3. 요청 확인
+
+```powershell
+$body = @{ question = "Update와 FixedUpdate의 차이가 뭐야?" } | ConvertTo-Json
+Invoke-RestMethod -Uri "http://127.0.0.1:5000/chat" -Method Post -ContentType "application/json; charset=utf-8" -Body ([System.Text.Encoding]::UTF8.GetBytes($body))
+```
+
+`VLLM_SERVER_URL`을 설정하지 않으면 MCP 도구는 Mock 응답을 반환합니다. `/health` 성공이나 Mock 응답만으로 실제 모델 추론이 확인된 것은 아닙니다. 웹 화면은 1차 프로젝트의 `flask/air/templates/llm_tutor.html`에 있으며, 연결 주소는 `flask/air/views/llm_views.py`에서 설정합니다.
+
+[← 전체 프로젝트](../README.md)
