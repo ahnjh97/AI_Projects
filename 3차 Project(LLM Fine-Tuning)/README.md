@@ -1,6 +1,6 @@
 <div align="center">
 
-# Unity / GameDev 한국어 튜터 [프로젝트 링크](https://github.com/ahnjh97/AI_Projects/tree/main/3%EC%B0%A8%20Project%28LLM%20Fine-Tuning%29)
+# Unity/GameDev LLM Tutor [프로젝트 링크](https://github.com/ahnjh97/AI_Projects/tree/main/3%EC%B0%A8%20Project%28LLM%20Fine-Tuning%29)
 
 **Unity, 게임개발, 게임수학 질문을 위한 도메인 특화 LLM 챗봇**
 
@@ -12,24 +12,29 @@
 
 ## 프로젝트 소개
 
-Unity 학습자가 한국어로 개념과 구현 방법을 질문할 수 있는 튜터형 LLM 서비스입니다. 일반 질의응답 데이터와 게임개발 전문 데이터를 구성하고, 모델의 답변을 웹 화면으로 전달하는 Flask REST API를 구현했습니다.
+Unity 학습자가 한국어로 개념과 구현 방법을 질문할 수 있는 LLM Tutor입니다. **Llama 3.2 3B**에 KoAlpaca 기반 instruction tuning과 Unity/GameDev 도메인 fine-tuning을 적용하고, 모델의 답변을 웹 화면으로 전달하는 Flask REST API를 구현했습니다.
 
 답변이 불필요하게 길어지거나 학습용 구분자를 다시 출력하는 문제를 줄이기 위해 **도메인 프롬프트, stop sequence, 중복 제거와 길이 제한**을 함께 적용했습니다.
 
 ## 주요 기능
 
 - **한국어 튜터**: Unity, C#, 게임개발, 게임수학 질문과 답변
-- **학습 데이터**: 전문 지식과 KoAlpaca 일반 지시 및 대화 데이터의 혼합
+- **Instruction Tuning**: KoAlpaca instruction dataset으로 한국어 지시문과 응답 형식 학습
+- **Domain Fine-Tuning**: Unity/GameDev 전문 지식과 일반 대화 데이터를 활용한 추가 학습
 - **REST API**: 질문 입력 검증, 응답 포맷, 상태 확인
 - **응답 제어**: 학습 구분자 제거, 중복 문장 제거, 코드 요청 여부에 따른 출력 제어
 - **연결 처리**: 추론 서버 주소, 모델, 키 설정, 타임아웃, 연결 오류 메시지
 
 ## 기술 스택
 
+- **Base Model**: Llama 3.2 3B (`meta-llama/Llama-3.2-3B`)
+- **Fine-Tuning**: QLoRA, instruction tuning, Unity/GameDev 도메인 fine-tuning
 - **API**: Python, Flask, Flask-RESTX, Flask-CORS (입력 검증과 JSON 응답)
 - **Dataset**: JSONL, KoAlpaca instruction data (한국어 지시문과 답변 구성)
 
-이 저장소에는 데이터셋과 서비스 연결 코드가 포함되어 있으며, 파인튜닝 학습 스크립트와 최종 LLM 가중치는 포함되어 있지 않습니다.
+KoAlpaca로 instruction tuning한 모델에 LoRA adapter를 병합한 뒤, 이를 Unity/GameDev 도메인 fine-tuning의 시작 모델로 사용했습니다. 두 학습 단계 모두 4-bit QLoRA를 적용했습니다.
+
+이 저장소에는 데이터셋과 서비스 연결 코드가 포함되어 있으며, fine-tuning 학습 노트북과 최종 LLM 가중치는 포함되어 있지 않습니다.
 
 ## 데이터셋
 
