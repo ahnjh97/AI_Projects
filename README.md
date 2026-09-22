@@ -27,9 +27,9 @@
 
 ---
 
-### 02. PreDect &nbsp;&nbsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](./2%EC%B0%A8%20Project%28Computer%20Vision%29/)
+### 02. PreDect - 보행자 신호등 판별 &nbsp;&nbsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](./2%EC%B0%A8%20Project%28Computer%20Vision%29/)
 
-**PreDect**는 영상 속 보행 신호, 사람, 공 등을 탐지하고 탐지 결과를 바탕으로 위험도 지표를 계산하는 Computer Vision 프로젝트입니다. 객체가 표시된 영상과 분석 결과를 웹 화면에서 확인할 수 있도록 API로 연결했습니다.
+**PreDect**는 영상 속 보행자 신호등의 빨간불과 녹색불을 판별하고 사람, 공 등을 탐지하며 탐지 결과를 바탕으로 위험도 지표를 계산하는 Computer Vision 프로젝트입니다. 객체가 표시된 영상과 분석 결과를 웹 화면에서 확인할 수 있도록 API로 연결했습니다.
 
 - 자동으로 생성한 라벨 후보를 사람이 검수하고, 정리한 데이터로 객체 탐지 모델을 학습하고 검증했습니다.
 - 탐지 영상을 스트리밍으로 제공하고, 최신 탐지 목록과 위험도 지표를 별도 API로 전달합니다.
