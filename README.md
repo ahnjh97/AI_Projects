@@ -12,7 +12,7 @@
 
 <br>
 
-## 프로젝트 소개
+## 📌 프로젝트 소개
 
 모델 학습에 그치지 않고 **데이터 준비 → 학습과 평가 → 추론 → API → 사용자 화면**으로 이어지는 과정을 구현했습니다. 각 프로젝트 폴더의 README에서 주요 기능, 설계, 구현 포인트를 확인할 수 있습니다.
 
@@ -51,13 +51,13 @@ KoAlpaca instruction tuning과 Unity/GameDev 도메인 fine-tuning을 모두 QLo
 
 ---
 
-## 구현 범위
+## 🎯 구현 범위
 
 - **예측 서비스:** 데이터 수집과 정제, 다중 출력 회귀, Oracle 저장, 지도 및 차트 시각화, 입력값 시뮬레이션
 - **영상 인식:** 자동 라벨 후보 생성과 사람 검수, YOLO11n fine-tuning과 검증, OpenVINO 변환, MJPEG, JSON API
 - **LLM 서비스:** instruction dataset 구성, QLoRA 기반 SFT, instruction tuning과 도메인 fine-tuning, AWQ 양자화, 프롬프트와 응답 후처리
 
-## 저장소 구조
+## 📂 저장소 구조
 
 ```text
 AI_Projects/
@@ -76,7 +76,7 @@ AI_Projects/
 
 1차 프로젝트의 Flask 앱에는 PreDect와 LLM 튜터의 웹 화면도 포함되어 있습니다. 각 추론 API는 별도 프로세스로 동작합니다.
 
-## 관련 문서
+## 📄 관련 문서
 
 - [프로젝트 수행 결과서](./1.%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%88%98%ED%96%89%20%EA%B2%B0%EA%B3%BC%EC%84%9C.pptx)
 - 모델 성능은 저장된 검증 로그 기준이며, 예측값과 위험도는 프로젝트에서 구현한 실험 지표입니다.
