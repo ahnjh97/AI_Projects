@@ -34,7 +34,7 @@
 - 자동으로 생성한 라벨 후보를 사람이 검수하고, 정리한 데이터로 객체 탐지 모델을 학습하고 검증했습니다.
 - 탐지 영상을 스트리밍으로 제공하고, 최신 탐지 목록과 위험도 지표를 별도 API로 전달합니다.
 
-**핵심 기술:** YOLO11n, OpenCV, OpenVINO, Flask-RESTX
+**핵심 기술:** YOLO11n, Roboflow, OpenCV, OpenVINO, Flask-RESTX
 
 ---
 

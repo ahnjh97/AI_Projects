@@ -29,6 +29,7 @@ PreDect는 보행 환경의 영상에서 **빨간불과 녹색불 보행 신호,
 ## 기술 스택
 
 - **Detection**: Ultralytics YOLO11n (보행 신호, 주변 객체 학습과 탐지)
+- **Dataset**: Roboflow (객체 탐지 데이터셋 구성과 관리)
 - **Video**: OpenCV (프레임 입력, 주석 영상, MJPEG 스트리밍)
 - **Inference**: OpenVINO (FP32 모델 변환 및 별도 추론 실험)
 - **API**: Python, Flask, Flask-RESTX, Flask-CORS (영상, 상태 제공과 API 문서)
