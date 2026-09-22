@@ -1,6 +1,6 @@
 <div align="center">
 
-# PreDect
+# PreDect [프로젝트 링크](https://github.com/ahnjh97/AI_Projects/tree/main/2%EC%B0%A8%20Project%28Computer%20Vision%29)
 
 **보행 신호와 주변 객체를 탐지하고 영상과 위험도 API로 제공하는 컴퓨터비전 프로젝트**
 

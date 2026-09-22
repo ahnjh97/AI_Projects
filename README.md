@@ -14,7 +14,7 @@
 
 모델 학습에 그치지 않고 **데이터 준비 → 학습과 평가 → 추론 → API → 사용자 화면**으로 이어지는 과정을 구현했습니다. 각 프로젝트 폴더의 README에서 주요 기능, 설계, 구현 포인트를 확인할 수 있습니다.
 
-### 01. 호흡기 건강 예보
+### 01. 호흡기 건강 예보 [프로젝트 링크](./1%EC%B0%A8%20Project%28Flask%2C%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%29/)
 
 서울시 25개 자치구의 감기와 천식 발생률, 환자 수를 당일부터 3일 뒤까지 예측하는 웹 서비스입니다. 대기환경, 인구, 과거 질환 데이터를 활용해 지역별 예측 결과를 지도와 차트로 비교할 수 있습니다.
 
@@ -23,11 +23,9 @@
 
 **핵심 기술:** Flask, Oracle DB, XGBoost, scikit-learn
 
-[![호흡기 건강 예보 자세히 보기](https://img.shields.io/badge/%ED%98%B8%ED%9D%A1%EA%B8%B0_%EA%B1%B4%EA%B0%95_%EC%98%88%EB%B3%B4-%EC%9E%90%EC%84%B8%ED%9E%88_%EB%B3%B4%EA%B8%B0-167D9A?style=for-the-badge)](./1%EC%B0%A8%20Project%28Flask%2C%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%29/)
-
 ---
 
-### 02. 영상 객체 탐지와 위험도 분석
+### 02. 영상 객체 탐지와 위험도 분석 [프로젝트 링크](./2%EC%B0%A8%20Project%28Computer%20Vision%29/)
 
 **PreDect**는 영상 속 보행 신호, 사람, 공 등을 탐지하고 탐지 결과를 바탕으로 위험도 지표를 계산하는 컴퓨터비전 프로젝트입니다. 객체가 표시된 영상과 분석 결과를 웹 화면에서 확인할 수 있도록 API로 연결했습니다.
 
@@ -36,20 +34,16 @@
 
 **핵심 기술:** YOLO11n, OpenCV, OpenVINO, Flask-RESTX
 
-[![영상 객체 탐지와 위험도 분석 자세히 보기](https://img.shields.io/badge/%EC%98%81%EC%83%81_%EA%B0%9D%EC%B2%B4_%ED%83%90%EC%A7%80%EC%99%80_%EC%9C%84%ED%97%98%EB%8F%84_%EB%B6%84%EC%84%9D-%EC%9E%90%EC%84%B8%ED%9E%88_%EB%B3%B4%EA%B8%B0-287C67?style=for-the-badge)](./2%EC%B0%A8%20Project%28Computer%20Vision%29/)
-
 ---
 
-### 03. 유니티 게임개발 챗봇 튜터
+### 03. 유니티 게임개발 챗봇 튜터 [프로젝트 링크](./3%EC%B0%A8%20Project%28LLM%20Fine-Tuning%29/)
 
 유니티 사용법, 게임개발 개념, 게임수학 질문에 한국어로 답하는 학습용 챗봇입니다. 게임개발 분야의 질문과 답변으로 학습 데이터를 구성하고, 튜닝 모델의 답변을 웹 화면으로 전달하는 흐름을 구현했습니다.
 
 - 전문 분야와 일반 대화 데이터를 합쳐 총 7,290개의 한국어 학습 데이터를 구성했습니다.
-- 웹 API, MCP 도구, 모델 추론 서버를 연결하고 프롬프트 구성과 응답 후처리를 적용했습니다.
+- 웹 API와 모델의 응답을 연결하고 프롬프트 구성과 응답 후처리를 적용했습니다.
 
-**핵심 기술:** 한국어 질의응답 데이터셋, Flask-RESTX, MCP, vLLM
-
-[![유니티 게임개발 챗봇 튜터 자세히 보기](https://img.shields.io/badge/%EC%9C%A0%EB%8B%88%ED%8B%B0_%EA%B2%8C%EC%9E%84%EA%B0%9C%EB%B0%9C_%EC%B1%97%EB%B4%87_%ED%8A%9C%ED%84%B0-%EC%9E%90%EC%84%B8%ED%9E%88_%EB%B3%B4%EA%B8%B0-6750A4?style=for-the-badge)](./3%EC%B0%A8%20Project%28LLM%20Fine-Tuning%29/)
+**핵심 기술:** 한국어 질의응답 데이터셋, Flask-RESTX
 
 ---
 
@@ -57,7 +51,7 @@
 
 - **예측 서비스:** 데이터 수집과 정제, 다중 출력 회귀, Oracle 저장, 지도 및 차트 시각화, 입력값 시뮬레이션
 - **영상 인식:** 자동 라벨 후보 생성과 사람 검수, YOLO11n 학습과 검증, OpenVINO 변환, MJPEG, JSON API
-- **LLM 서비스:** 한국어 질의응답 데이터 구성, 도메인 튜닝, MCP 도구 연결, 프롬프트와 응답 후처리
+- **LLM 서비스:** 한국어 질의응답 데이터 구성, 도메인 튜닝, 프롬프트와 응답 후처리
 
 ## 저장소 구조
 
@@ -72,7 +66,7 @@ AI_Projects/
 │  └─ __init__.py                 # PreDect 영상과 위험도 API
 ├─ 3차 Project(LLM Fine-Tuning)/
 │  ├─ unity_game_dev_tutor_dataset/ # 한국어 학습 데이터
-│  └─ restx-mcp-server/            # REST API, MCP, 추론 서버 연결
+│  └─ README.md                   # 챗봇 기능과 데이터 구성 설명
 └─ 1. 프로젝트 수행 결과서.pptx
 ```
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-# Unity / GameDev 한국어 튜터
+# Unity / GameDev 한국어 튜터 [프로젝트 링크](https://github.com/ahnjh97/AI_Projects/tree/main/3%EC%B0%A8%20Project%28LLM%20Fine-Tuning%29)
 
 **Unity, 게임개발, 게임수학 질문을 위한 도메인 특화 LLM 챗봇**
 
@@ -12,7 +12,7 @@
 
 ## 프로젝트 소개
 
-Unity 학습자가 한국어로 개념과 구현 방법을 질문할 수 있는 튜터형 LLM 서비스입니다. 일반 instruction 데이터와 게임개발 전문 데이터를 구성하고, 도메인 튜닝 모델을 **Flask REST API → MCP 도구 → vLLM 추론 서버**로 연결했습니다.
+Unity 학습자가 한국어로 개념과 구현 방법을 질문할 수 있는 튜터형 LLM 서비스입니다. 일반 질의응답 데이터와 게임개발 전문 데이터를 구성하고, 모델의 답변을 웹 화면으로 전달하는 Flask REST API를 구현했습니다.
 
 답변이 불필요하게 길어지거나 학습용 구분자를 다시 출력하는 문제를 줄이기 위해 **도메인 프롬프트, stop sequence, 중복 제거와 길이 제한**을 함께 적용했습니다.
 
@@ -21,18 +21,15 @@ Unity 학습자가 한국어로 개념과 구현 방법을 질문할 수 있는 
 - **한국어 튜터**: Unity, C#, 게임개발, 게임수학 질문과 답변
 - **학습 데이터**: 전문 지식과 KoAlpaca 일반 지시 및 대화 데이터의 혼합
 - **REST API**: 질문 입력 검증, 응답 포맷, 상태 확인
-- **MCP**: 질문과 개념 설명 기능을 독립 도구로 제공
 - **응답 제어**: 학습 구분자 제거, 중복 문장 제거, 코드 요청 여부에 따른 출력 제어
 - **연결 처리**: 추론 서버 주소, 모델, 키 설정, 타임아웃, 연결 오류 메시지
 
 ## 기술 스택
 
 - **API**: Python, Flask, Flask-RESTX, Flask-CORS (입력 검증과 JSON 응답)
-- **Tool Layer**: MCP Python SDK, FastMCP (stdio 기반 도구 호출)
-- **Serving**: vLLM, requests (별도 모델 서버에 completion 요청)
 - **Dataset**: JSONL, KoAlpaca instruction data (한국어 지시문과 답변 구성)
 
-vLLM은 모델 **추론과 서빙** 역할입니다. 이 저장소에는 데이터셋과 서비스 연결 코드가 포함되어 있으며, 파인튜닝 학습 스크립트와 최종 LLM 가중치는 포함되어 있지 않습니다.
+이 저장소에는 데이터셋과 서비스 연결 코드가 포함되어 있으며, 파인튜닝 학습 스크립트와 최종 LLM 가중치는 포함되어 있지 않습니다.
 
 ## 데이터셋
 
@@ -53,24 +50,13 @@ vLLM은 모델 **추론과 서빙** 역할입니다. 이 저장소에는 데이�
 ```mermaid
 flowchart LR
     U[사용자 질문] --> F[Flask REST API]
-    F --> C[MCP Client]
-    C --> M[FastMCP Tool]
-    M --> P[도메인 프롬프트]
-    P --> V[vLLM 모델 서버]
+    F --> P[도메인 프롬프트]
+    P --> V[모델 추론]
     V --> R[응답 후처리]
     R --> F
 ```
 
-- `app.py`: `/chat` 요청을 받아 MCP 세션을 생성하고 `ask_unity_tutor` 호출
-- `mcp_server.py`: 프롬프트 생성, vLLM 요청, 응답 추출과 후처리와 MCP 도구 정의
-- `mcp_client.py`: 별도 MCP 클라이언트 예제
-- `VLLM_SERVER_URL`, `VLLM_API_KEY`, `VLLM_MODEL`: 실행 환경별 추론 서버 설정
-
 ## 구현 포인트
-
-### API와 모델 서버 분리
-
-웹 API는 질문 검증과 응답 형식을 담당하고, MCP 도구는 튜터 기능과 모델 호출을 담당합니다. 모델 접속 정보는 환경변수로 전달하여 API 코드와 분리했습니다. MCP 호출에는 비동기 세션을 사용하지만, 현재 Flask 요청 처리에서는 `asyncio.run`으로 완료를 기다립니다.
 
 ### 출력 형식의 일관성
 
@@ -81,12 +67,9 @@ flowchart LR
 
 이 설정은 출력 제어를 위한 구현이며 답변 정확도나 코드의 실행 가능성을 보장하는 평가 결과는 아닙니다.
 
-## API와 MCP 도구
+## 주요 API
 
 - HTTP `GET /health`: Flask API 상태 확인
 - HTTP `POST /chat`: `question`을 받아 `status`, `answer`, `via` 반환
-- MCP `health_check`: MCP 상태와 모델 서버 설정 여부 확인
-- MCP `ask_unity_tutor`: 게임개발 질문 응답
-- MCP `explain_unity_concept`: 개념을 초보자용 질문으로 변환 후 응답
 
 [← 전체 프로젝트](../README.md)
