@@ -4,7 +4,7 @@
 
 **대기환경, 인구, 과거 질환 데이터를 지역별 예측과 시각화로 연결한 웹 서비스**
 
-[주요 기능](#주요-기능) &nbsp;&nbsp; [아키텍처](#아키텍처) &nbsp;&nbsp; [실행 안내](#실행-안내) &nbsp;&nbsp; [전체 프로젝트](../README.md)
+[주요 기능](#주요-기능) &nbsp;&nbsp; [아키텍처](#아키텍처) &nbsp;&nbsp; [전체 프로젝트](../README.md)
 
 </div>
 
@@ -74,29 +74,6 @@ XGBoost 학습 코드에서는 환자 수와 과거 환자 수 피처를 **인�
 - `POST /service/simulate`: 입력 조건을 반영한 네 시점 예측
 - `GET /PreDect`: 별도 영상 API와 연결하는 화면
 - `GET /llm/tutor`: 별도 LLM API와 연결하는 화면
-
-## 실행 안내
-
-### 준비 사항
-
-- Python 환경과 Oracle DB, 연결에 필요한 Oracle 클라이언트 설정
-- 코드에서 사용하는 Flask, SQLAlchemy, ML 관련 패키지
-- `DB/`, `ML/SQL/` 기준의 테이블과 원천 데이터 및 학습용 `TRAIN_SET`
-- `flask/air/ml/model_asthma_seoul.pkl`, `model_cold_seoul.pkl`과 보조 모델 산출물
-
-이 폴더에는 통합 `requirements.txt`와 학습된 `.pkl` 파일이 포함되어 있지 않습니다. `.pkl`은 저장소의 `.gitignore` 대상입니다. DB 연결은 `flask/config.py`, `ML/db_config.py` 및 실행할 수집, 예측 스크립트의 설정을 확인해 로컬 환경에 맞게 준비합니다.
-
-### 실행 순서
-
-1. DB 스키마와 원천 데이터를 준비하고 `ML/SQL/`의 학습 데이터 구성을 확인합니다.
-2. 학습 코드의 경로, import 설정을 맞춘 뒤 질환별 모델을 생성하고 위 위치에 배치합니다.
-3. 이 프로젝트의 `flask` 폴더에서 웹 앱을 실행합니다.
-
-```powershell
-python -m flask --app air:create_app run --port 5001
-```
-
-`http://127.0.0.1:5001/service/`에서 예측 화면을 확인합니다. `5001`은 LLM API의 기본 포트 `5000`과 함께 실행할 때 충돌을 피하기 위한 예시입니다. PreDect, 튜터 화면까지 사용하려면 해당 API를 별도로 실행하고 화면에 지정된 서버 주소를 수정해야 합니다.
 
 ## 결과 해석
 

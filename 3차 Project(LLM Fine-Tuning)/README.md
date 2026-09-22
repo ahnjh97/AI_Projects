@@ -4,7 +4,7 @@
 
 **Unity, 게임개발, 게임수학 질문을 위한 도메인 특화 LLM 챗봇**
 
-[주요 기능](#주요-기능) &nbsp;&nbsp; [데이터셋](#데이터셋) &nbsp;&nbsp; [아키텍처](#아키텍처) &nbsp;&nbsp; [실행 안내](#실행-안내) &nbsp;&nbsp; [전체 프로젝트](../README.md)
+[주요 기능](#주요-기능) &nbsp;&nbsp; [데이터셋](#데이터셋) &nbsp;&nbsp; [아키텍처](#아키텍처) &nbsp;&nbsp; [전체 프로젝트](../README.md)
 
 </div>
 
@@ -88,39 +88,5 @@ flowchart LR
 - MCP `health_check`: MCP 상태와 모델 서버 설정 여부 확인
 - MCP `ask_unity_tutor`: 게임개발 질문 응답
 - MCP `explain_unity_concept`: 개념을 초보자용 질문으로 변환 후 응답
-
-## 실행 안내
-
-### 1. API 환경 준비
-
-`restx-mcp-server` 폴더에서 실행합니다.
-
-```powershell
-python -m pip install -r requirements.txt
-```
-
-`app.py`의 `StdioServerParameters`에는 `cwd="/home/ubuntu/llm-api"`가 지정되어 있습니다. **실행 전에 이를 로컬 `restx-mcp-server`의 절대 경로로 변경**해야 MCP 프로세스가 `mcp_server.py`를 찾을 수 있습니다.
-
-### 2. 추론 서버 설정
-
-별도 환경에서 튜닝 모델을 vLLM으로 서비스한 뒤, API를 실행할 셸에 다음 값을 지정합니다.
-
-```powershell
-$env:VLLM_SERVER_URL = "http://127.0.0.1:8000/v1/completions"
-$env:VLLM_MODEL = "unity-gamedev-llm"
-# 인증을 사용하는 서버라면 VLLM_API_KEY도 설정합니다.
-python app.py
-```
-
-모델 이름은 실제 vLLM에 등록된 이름과 일치해야 합니다. URL은 기본 주소가 아니라 `prompt` 기반 요청을 받는 **completion 엔드포인트 전체 주소**입니다. 코드가 `.env`를 자동으로 읽지는 않으므로 환경변수를 프로세스에 전달해야 합니다.
-
-### 3. 요청 확인
-
-```powershell
-$body = ConvertTo-Json -InputObject @{ question = "Update와 FixedUpdate의 차이가 뭐야?" }
-Invoke-RestMethod -Uri "http://127.0.0.1:5000/chat" -Method Post -ContentType "application/json; charset=utf-8" -Body ([System.Text.Encoding]::UTF8.GetBytes($body))
-```
-
-`VLLM_SERVER_URL`을 설정하지 않으면 MCP 도구는 Mock 응답을 반환합니다. `/health` 성공이나 Mock 응답만으로 실제 모델 추론이 확인된 것은 아닙니다. 웹 화면은 1차 프로젝트의 `flask/air/templates/llm_tutor.html`에 있으며, 연결 주소는 `flask/air/views/llm_views.py`에서 설정합니다.
 
 [← 전체 프로젝트](../README.md)

@@ -6,7 +6,7 @@
 
 Pre + Detect, 2026.04–2026.05
 
-[주요 기능](#주요-기능) &nbsp;&nbsp; [학습과 검증](#학습과-검증) &nbsp;&nbsp; [로컬 실행](#로컬-실행) &nbsp;&nbsp; [전체 프로젝트](../README.md)
+[주요 기능](#주요-기능) &nbsp;&nbsp; [학습과 검증](#학습과-검증) &nbsp;&nbsp; [전체 프로젝트](../README.md)
 
 </div>
 
@@ -94,22 +94,5 @@ flowchart LR
    ├─ labeler.ipynb        # 보행 신호 Labeler 학습
    └─ YOLOv11n.ipynb       # 최종 학습과 검증, OpenVINO 내보내기
 ```
-
-## 로컬 실행
-
-이 프로젝트 폴더를 현재 작업 디렉터리로 사용합니다. Python 가상환경에서 API에 필요한 패키지를 설치합니다.
-
-```powershell
-python -m pip install flask flask-restx flask-cors ultralytics opencv-python
-python __init__.py
-```
-
-- `http://127.0.0.1:8888/docs`: Swagger UI
-- `http://127.0.0.1:8888/detection/video-feed`: 탐지 영상 스트림
-- `http://127.0.0.1:8888/detection/risk-data`: 최신 탐지 목록과 위험도
-
-영상 스트림을 열어야 프레임 추론과 상태 갱신이 시작됩니다. JSON API만 호출하면 초기값 또는 마지막 처리값을 반환합니다. 현재 구현은 전역 상태를 공유하며 영상 끝에서 반복 재생합니다.
-
-재학습에는 별도의 이미지와 라벨 데이터와 `data.yaml`이 필요합니다. 노트북의 학습 경로를 맞춘 뒤 실행하고, OpenVINO 내보내기에는 해당 패키지를 추가로 준비합니다. 입력 영상과 가중치 이름을 변경할 때는 `__init__.py`의 상대 경로도 수정합니다.
 
 [← 전체 프로젝트](../README.md)
