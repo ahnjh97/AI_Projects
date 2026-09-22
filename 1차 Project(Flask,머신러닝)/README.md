@@ -4,6 +4,8 @@
 
 **대기환경, 인구, 과거 질환 데이터를 지역별 예측과 시각화로 연결한 웹 서비스**
 
+**핵심 기술:** XGBoost, LightGBM, Random Forest, Multi-Output Regression, pandas, Flask, Oracle DB, SQLAlchemy
+
 [주요 기능](#주요-기능) &nbsp;&nbsp; [아키텍처](#아키텍처) &nbsp;&nbsp; [전체 프로젝트](../README.md)
 
 </div>
@@ -29,7 +31,9 @@
 
 - **Web**: Python, Flask, Jinja2, Bootstrap (웹 요청 처리와 화면 구성)
 - **Data**: Oracle DB, SQLAlchemy, python-oracledb (원천, 학습, 예측 데이터 저장 및 조회)
-- **ML**: scikit-learn, XGBoost, LightGBM, joblib (다중 출력 회귀, 모델 비교, 저장, 로딩)
+- **Models**: XGBoost, LightGBM, Random Forest (질환별 회귀 모델 학습과 비교)
+- **Regression**: Multi-Output Regression (D0~D+3의 네 시점 예측)
+- **ML Libraries**: scikit-learn, joblib (모델 학습과 평가, 저장, 로딩)
 - **Processing**: pandas, NumPy, holidays (피처 구성, 인구 기준 정규화, 휴일 처리)
 - **Forms**: Flask-WTF, WTForms (입력 폼 및 CSRF 처리)
 

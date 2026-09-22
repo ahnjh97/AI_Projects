@@ -23,7 +23,7 @@
 - 원천 데이터 수집과 정제부터 예측 모델 학습, 데이터베이스 저장, 웹 화면까지 구현했습니다.
 - 사용자가 입력값을 바꾸면서 예측 결과의 변화를 확인하는 시뮬레이션 기능을 제공합니다.
 
-**핵심 기술:** Flask, Oracle DB, XGBoost
+**핵심 기술:** XGBoost, LightGBM, Random Forest, Multi-Output Regression, pandas, Flask, Oracle DB, SQLAlchemy
 
 ---
 

@@ -4,6 +4,8 @@
 
 **보행자 신호등의 빨간불과 녹색불을 판별하고 주변 객체 탐지 결과를 영상과 위험도 API로 제공하는 Computer Vision 프로젝트**
 
+**핵심 기술:** YOLO11n Fine-Tuning, Roboflow, OpenCV, OpenVINO, Flask-RESTX
+
 **Pre(미리) + Detect(감지) + Predict(예측) → PreDect**
 
 2026.04–2026.05
