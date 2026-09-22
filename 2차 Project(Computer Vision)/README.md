@@ -1,6 +1,6 @@
 <div align="center">
 
-# PreDect - 보행자 신호등 판별
+# PreDect
 
 **보행자 신호등의 빨간불과 녹색불을 판별하고 주변 객체 탐지 결과를 영상과 위험도 API로 제공하는 Computer Vision 프로젝트**
 

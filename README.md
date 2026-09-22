@@ -16,7 +16,7 @@
 
 모델 학습에 그치지 않고 **데이터 준비 → 학습과 평가 → 추론 → API → 사용자 화면**으로 이어지는 과정을 구현했습니다. 각 프로젝트 폴더의 README에서 주요 기능, 설계, 구현 포인트를 확인할 수 있습니다.
 
-### 01. 호흡기 건강 예보 &nbsp;&nbsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](./1%EC%B0%A8%20Project%28Flask%2C%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%29/)
+### 01. 미세먼지 기반 서울시 호흡기 건강 예보 &nbsp;&nbsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](./1%EC%B0%A8%20Project%28Flask%2C%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%29/)
 
 서울시 25개 자치구의 감기와 천식 발생률, 환자 수를 당일부터 3일 뒤까지 예측하는 웹 서비스입니다. 대기환경, 인구, 과거 질환 데이터를 활용해 지역별 예측 결과를 지도와 차트로 비교할 수 있습니다.
 
@@ -27,7 +27,7 @@
 
 ---
 
-### 02. PreDect - 보행자 신호등 판별 &nbsp;&nbsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](./2%EC%B0%A8%20Project%28Computer%20Vision%29/)
+### 02. PreDect &nbsp;&nbsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](./2%EC%B0%A8%20Project%28Computer%20Vision%29/)
 
 **PreDect**는 영상 속 보행자 신호등의 빨간불과 녹색불을 판별하고 사람, 공 등을 탐지하며 탐지 결과를 바탕으로 위험도 지표를 계산하는 Computer Vision 프로젝트입니다. 객체가 표시된 영상과 분석 결과를 웹 화면에서 확인할 수 있도록 API로 연결했습니다.
 
