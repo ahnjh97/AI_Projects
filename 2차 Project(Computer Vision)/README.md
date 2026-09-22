@@ -1,6 +1,6 @@
 <div align="center">
 
-# PreDect &emsp;&emsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](https://github.com/ahnjh97/AI_Projects/tree/main/2%EC%B0%A8%20Project%28Computer%20Vision%29)
+# PreDect
 
 **보행 신호와 주변 객체를 탐지하고 영상과 위험도 API로 제공하는 컴퓨터비전 프로젝트**
 

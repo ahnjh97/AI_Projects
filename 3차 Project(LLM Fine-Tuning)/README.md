@@ -1,6 +1,6 @@
 <div align="center">
 
-# Unity/GameDev LLM Tutor &emsp;&emsp; [![프로젝트 폴더 열기](https://img.shields.io/badge/-%E2%86%97-24292F?style=flat-square&logo=github&logoColor=white)](https://github.com/ahnjh97/AI_Projects/tree/main/3%EC%B0%A8%20Project%28LLM%20Fine-Tuning%29)
+# Unity/GameDev LLM Tutor
 
 **Unity, 게임개발, 게임수학 질문을 위한 도메인 특화 LLM 챗봇**
 
