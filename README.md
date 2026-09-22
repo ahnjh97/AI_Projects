@@ -2,7 +2,7 @@
 
 # AI Projects
 
-**Machine Learning, Computer Vision, LLM을 웹 서비스로 연결한 세 가지 프로젝트**
+**Machine Learning, Computer Vision, LLM Fine-Tuning을 웹 서비스로 연결한 세 가지 프로젝트**
 
 [![호흡기 건강 예보 (Machine Learning)](https://img.shields.io/badge/%ED%98%B8%ED%9D%A1%EA%B8%B0%20%EA%B1%B4%EA%B0%95%20%EC%98%88%EB%B3%B4%20%28Machine%20Learning%29-167D9A?style=for-the-badge)](./1%EC%B0%A8%20Project%28Flask%2C%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%29/)
 [![PreDect (Computer Vision)](https://img.shields.io/badge/PreDect%20%28Computer%20Vision%29-287C67?style=for-the-badge)](./2%EC%B0%A8%20Project%28Computer%20Vision%29/)
