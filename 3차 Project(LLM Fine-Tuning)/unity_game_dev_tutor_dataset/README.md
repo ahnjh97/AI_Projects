@@ -1,4 +1,4 @@
-﻿# Unity Game Dev Tutor Dataset (Korean)
+# Unity Game Dev Tutor Dataset (Korean)
 
 Unity/게임개발/게임수학 튜터 챗봇용 instruction 데이터셋입니다.
 
@@ -13,7 +13,7 @@ Unity/게임개발/게임수학 튜터 챗봇용 instruction 데이터셋입니�
 - 일반 대화/지시: 1000개 (약 13.7%)
 - 총합: 7290개
 
-현재 JSONL·JSON 파일의 실제 레코드 수를 기준으로 집계했습니다. `data_type`이 `expert`인 항목 6290개와 `general`인 항목 1000개로 구성됩니다.
+현재 JSONL, JSON 파일의 실제 레코드 수를 기준으로 집계했습니다. `data_type`이 `expert`인 항목 6290개와 `general`인 항목 1000개로 구성됩니다.
 
 일반 대화 데이터는 `from datasets import load_dataset` 후 `load_dataset("beomi/KoAlpaca-v1.1a", split="train")`로 불러와 `instruction`, `input`, `output` 형식을 검증한 뒤 샘플링했습니다.
 
