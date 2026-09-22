@@ -4,7 +4,7 @@
 
 **대기환경, 인구, 과거 질환 데이터를 지역별 예측과 시각화로 연결한 웹 서비스**
 
-**핵심 기술:** XGBoost, LightGBM, Random Forest, Multi-Output Regression, pandas, Flask, Oracle DB, SQLAlchemy
+**핵심 기술:** Python, XGBoost, LightGBM, Random Forest, Multi-Output Regression, pandas, Flask, Oracle DB, SQLAlchemy
 
 [주요 기능](#주요-기능) &nbsp;&nbsp; [아키텍처](#아키텍처) &nbsp;&nbsp; [전체 프로젝트](../README.md)
 

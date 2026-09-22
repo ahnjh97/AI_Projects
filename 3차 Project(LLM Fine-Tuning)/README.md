@@ -4,7 +4,7 @@
 
 **Unity, 게임개발, 게임수학 질문을 위한 도메인 특화 LLM 챗봇**
 
-**핵심 기술:** Llama 3.2 3B, QLoRA, SFT, Instruction Tuning, Domain Fine-Tuning, AWQ, Flask-RESTX
+**핵심 기술:** Python, Llama 3.2 3B, QLoRA, SFT, Instruction Tuning, Domain Fine-Tuning, AWQ, Flask-RESTX
 
 [주요 기능](#주요-기능) &nbsp;&nbsp; [데이터셋](#데이터셋) &nbsp;&nbsp; [아키텍처](#아키텍처) &nbsp;&nbsp; [전체 프로젝트](../README.md)
 
